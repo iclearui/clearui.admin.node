@@ -23,6 +23,18 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.mongoose = {
+    clients: {
+      default: {
+        url: 'mongodb://mongo.lentrue.com/com-iclearui-admin',
+        options: {
+          user: 'iclear',
+          pass: 'iclear',
+        },
+      },
+    },
+  };
+
   return {
     ...config,
     ...userConfig,
