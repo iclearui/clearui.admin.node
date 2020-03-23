@@ -35,6 +35,12 @@ module.exports = appInfo => {
     },
   };
 
+  config.cors = {
+    allowHeaders: [ 'Content-Type', 'X-Requested-With', 'x-csrf-token' ],
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+    credentials: true,
+  };
+
   return {
     ...config,
     ...userConfig,

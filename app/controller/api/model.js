@@ -25,7 +25,7 @@ class ModelCtrl extends Controller {
                 console.log(e);
             });
         if (ctx.query.populate) {
-            records = records.deepPopulate(ctx.query.populate.split(','))
+            records = await ctx.collection.deepPopulate(records,ctx.query.populate.split(','))
                 .catch(e => {
                     if (e) {
                         error.code = e.code;
@@ -52,7 +52,7 @@ class ModelCtrl extends Controller {
             });
 
         if (ctx.query.populate) {
-            records = records.deepPopulate(ctx.query.populate.split(','))
+            records = await ctx.collection.deepPopulate(records,ctx.query.populate.split(','))
                 .catch(e => {
                     if (e) {
                         error.code = e.code;
@@ -92,7 +92,7 @@ class ModelCtrl extends Controller {
             });
 
         if (ctx.request.body.populate) {
-            records = records.deepPopulate(populate.split(','))
+            records = await ctx.collection.deepPopulate(records,ctx.request.body.populate.split(','))
                 .catch(e => {
                     if (e) {
                         error.code = e.code;
@@ -126,7 +126,7 @@ class ModelCtrl extends Controller {
         } else {
             delete ctx.request.body.updatedAt;
             delete ctx.request.body.createdAt;
-            records = await this.model.create(ctx.request.body).catch(e => {
+            records = await ctx.collection.create(ctx.request.body).catch(e => {
                 if (e) {
                     error.code = e.code;
                     error.message = e.message;

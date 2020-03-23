@@ -9,38 +9,13 @@ module.exports = app => {
       type: mongoose.Schema.ObjectId,
       ref: 'cdp_application',
     },
-    p_id: {
-      type: String,
-    },
-    name: {
-      type: String,
-    },
-    location: {
-      type: String,
+    idUser: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'sys_user',
     },
     type: {
       type: String,
-      enum: [ 'R', 'M', 'MWR' ],
-    },
-    icon: {
-      type: String,
-      default: 'folder',
-    },
-    routeName: {
-      type: String,
-    },
-    routePath: {
-      type: String,
-    },
-    resolvePath: {
-      type: String,
-    },
-    meta: {
-      type: String,
-    },
-    order: {
-      type: Number,
-      default: 999,
+      enum: [ 'Admin', 'Develop', 'Test' ],
     },
   };
 

@@ -15,6 +15,8 @@ module.exports = app => {
       name: '图标',
       type: String,
     },
+    frameServer:String,
+    frameClient:String,
     description: {
       name: '应用介绍',
       type: String,
