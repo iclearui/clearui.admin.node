@@ -33,7 +33,7 @@ class CloudAuth extends Controller {
       });
     if (!record) {
       error.code = '800';
-      error.message = '抱歉，该用户不存在，请联系管理员！';
+      error.message = '抱歉，该用户不存在！';
     } else if (record.userPwd !== crypto.createHash('md5').update(this.body.userPwd).digest('base64')) {
       error.code = '801';
       error.message = '抱歉！密码错误！';
