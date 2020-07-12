@@ -42,6 +42,15 @@ module.exports = appInfo => {
     credentials: false,
   };
 
+  config.static = {
+    prefix: '/',
+    dir: require('path').join(appInfo.baseDir, 'app/public'),
+    dynamic: true,
+    preload: true,
+    buffer: false,
+    maxFiles: 1000,
+  };
+
   return {
     ...config,
     ...userConfig,
