@@ -3,17 +3,13 @@
 const mongoose = require('mongoose');
 
 module.exports = app => {
-  const ctx = app.createAnonymousContext();
-  const model = require('path')
-    .basename(__filename, '.js');
+  const model = require('path').basename(__filename, '.js');
   const attributes = {
     idUser: {
-      name: '主表id',
       type: mongoose.Schema.ObjectId,
       ref: 'sys_user',
     },
     userType: {
-      name: '账户类型',
       type: String,
       default: 'User',
     },
@@ -148,37 +144,9 @@ module.exports = app => {
         },
       }),
     ],
-
-    isPurchase: {
-      type: Boolean,
-      default: false,
-    },
-    isSales: {
-      type: Boolean,
-      default: false,
-    },
-    isWarehouse: {
-      type: Boolean,
-      default: false,
-    },
-
   };
-
 
   const schema = app.MongooseSchema(model, attributes);
 
-  //
-  schema.post('save', async value => {
-    ctx.service.common.changeUserDefaultBusinessRole(value.idOrgan, value.idUser, { isSales: value.isSales, isPurchase: value.isPurchase });
-  });
-  schema.pre('update', async function() {
-    const result = await app.model.OrgOrganUser.findOne({ _id: this._conditions._id }).lean();
-    if (result && result.idOrgan) {
-      ctx.service.common.changeUserDefaultBusinessRole(result.idOrgan, result.idUser, this._update);
-    }
-  });
-
-
-  return app.mongooseDB.get('default')
-    .model(model, schema, model);
+  return app.mongooseDB.get('default').model(model, schema, model);
 };

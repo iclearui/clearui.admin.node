@@ -21,7 +21,8 @@ module.exports = app => {
   router.post('/v1/authority/register', controller.v1.authority.register);
   router.post('/v1/authority/changePwd', controller.v1.authority.changePwd);
 
-  router.get('/v1/authority/login', controller.v1.authority.login);
+  router.post('/v1/organ/set/admin', controller.v1.organ.setAdmin);
+  router.post('/v1/organ/set/application', controller.v1.organ.setApplication);
 
   // 权限系统API
 

@@ -13,7 +13,6 @@ class authority extends Controller {
   }
 
   async login() {
-    console.log(1);
     const error = {
       code: '0',
     };
