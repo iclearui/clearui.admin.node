@@ -30,16 +30,16 @@ module.exports = appInfo => {
         options: {
           user: 'iclear',
           pass: 'iclear',
+          useUnifiedTopology: true,
         },
       },
     },
   };
 
   config.cors = {
-    origin: '*',
-    allowHeaders: ['context-type', 'X-Requested-With', 'x-csrf-token' ],
+    allowHeaders: [ 'context-type', 'content-type', 'X-Requested-With', 'x-csrf-token' ],
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
-    credentials: false,
+    credentials: true,
   };
 
   config.static = {

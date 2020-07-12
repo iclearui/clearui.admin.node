@@ -4,24 +4,19 @@ module.exports = app => {
   const model = require('path').basename(__filename, '.js');
   const attributes = {
     userCode: {
-      name: '手机号码',
       type: String,
       unique: true,
     },
     userName: {
-      name: '姓名',
       type: String,
     },
     userPwd: {
-      name: '密码',
       type: String,
     },
     avatarColor: {
-      name: '头像背景',
       type: String,
     },
     avatar: {
-      name: '头像',
       type: String,
     },
   };

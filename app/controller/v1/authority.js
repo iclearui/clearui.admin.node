@@ -13,6 +13,7 @@ class authority extends Controller {
   }
 
   async login() {
+    console.log(1);
     const error = {
       code: '0',
     };
@@ -24,40 +25,13 @@ class authority extends Controller {
       error.code = '20202';
       error.message = 'param userPwd missing';
     }
-    let record = await this.ctx.model.SysUser.findOne({ userCode: this.body.userCode })
+    const record = await this.ctx.model.SysUser.findOne({ userCode: this.body.userCode })
       .catch(e => {
         if (e) {
           error.code = '700';
         }
         console.log(e);
       });
-    if (!record) {
-      const userInfo = await this.ctx.model.OrgOrganUser.find({ workNo: this.body.userCode })
-        .catch(e => {
-          if (e) {
-            error.code = '700';
-          }
-          console.log(e);
-        });
-      if (userInfo && userInfo[0]) {
-        const user = await this.ctx.model.SysUser.find({
-          _id: { $in: userInfo.map(e => e._id) }, userPwd: crypto.createHash('md5')
-            .update(this.body.userPwd)
-            .digest('base64'),
-        }).catch(e => {
-          if (e) {
-            error.code = '700';
-          }
-          console.log(e);
-        });
-        if (user && user.length === 1) {
-          record = user[0];
-        } else {
-          error.code = '800';
-          error.message = '抱歉，该用户不存在或密码错误，请联系管理员！';
-        }
-      }
-    }
     if (!record) {
       error.code = '800';
       error.message = '抱歉，该用户不存在，请联系管理员！';
