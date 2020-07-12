@@ -5,15 +5,17 @@ const mongoose = require('mongoose');
 module.exports = app => {
   const model = require('path').basename(__filename, '.js');
   const attributes = {
-    idUser: {
-      name: '用户ID',
-      type: mongoose.Schema.ObjectId,
-      ref: 'sys_user',
+    noticeClassCode: {
+      name: '通知类型编码',
+      type: String,
     },
-    idRole: {
-      name: '角色ID',
-      type: mongoose.Schema.ObjectId,
-      ref: 'sys_role',
+    noticeClassName: {
+      name: '通知类型名称',
+      type: String,
+    },
+    memo: {
+      name: '备注',
+      type: String,
     },
   };
 

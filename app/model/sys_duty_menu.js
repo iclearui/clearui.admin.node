@@ -5,19 +5,21 @@ const mongoose = require('mongoose');
 module.exports = app => {
   const model = require('path').basename(__filename, '.js');
   const attributes = {
-    idUser: {
-      name: '用户ID',
+    idDuty: {
       type: mongoose.Schema.ObjectId,
-      ref: 'sys_user',
+      ref: 'sys_duty',
     },
-    idRole: {
-      name: '角色ID',
+    idApplication: {
       type: mongoose.Schema.ObjectId,
-      ref: 'sys_role',
+      ref: 'cdp_application',
+    },
+    idMenu: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'cdp_menu',
     },
   };
 
-  const schema = app.MongooseSchema(model, attributes);
+  const schema = app.MongooseSchema(model, attributes,false,false);
 
   return app.mongooseDB.get('default').model(model, schema, model);
 };
