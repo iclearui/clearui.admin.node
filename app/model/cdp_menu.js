@@ -46,5 +46,13 @@ module.exports = app => {
 
   const schema = app.MongooseSchema(model, attributes, false);
 
+  schema.virtual('key').get(function() {
+    return this._id;
+  });
+
+  schema.virtual('title').get(function() {
+    return this.name;
+  });
+
   return app.mongooseDB.get('default').model(model, schema, model);
 };
