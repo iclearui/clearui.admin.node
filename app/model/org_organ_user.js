@@ -126,9 +126,9 @@ module.exports = app => {
     }) ],
     workInfo: [
       new mongoose.Schema({
-        startTime: {
+        range: {
           name: '起始时间',
-          type: String,
+          type: Array,
         },
         company: {
           name: '单位名称',

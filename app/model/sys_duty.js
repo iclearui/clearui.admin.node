@@ -5,6 +5,7 @@ module.exports = app => {
   const attributes = {
     dutyCode: String,
     dutyName: String,
+    memo: String,
   };
 
   const schema = app.MongooseSchema(model, attributes);
