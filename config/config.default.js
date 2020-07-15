@@ -22,7 +22,20 @@ module.exports = appInfo => {
 
   // add your user config here
   const userConfig = {
-    fileDir: path.join(appInfo.baseDir, 'fileDir'),
+    fileDir: path.join(appInfo.baseDir, 'files'),
+  };
+
+  config.multipart = {
+    mode: 'file',
+    fileSize: '50mb',
+    fileExtensions: [
+      '.pdf',
+      '.txt',
+      '.doc',
+      '.xlsx',
+      '.xls',
+      '.docx',
+    ],
   };
 
   config.mongoose = {

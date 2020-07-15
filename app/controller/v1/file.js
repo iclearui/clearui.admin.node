@@ -66,8 +66,7 @@ class CloudFile extends Controller {
       code: '0',
     };
     if (!fs.existsSync(path.join(this.ctx.app.config.fileDir))) {
-      mkdirp(path.join(this.ctx.app.config.fileDir), err => {
-      });
+      mkdirp(path.join(this.ctx.app.config.fileDir));
     }
     const files = [];
     for (const file of this.ctx.request.files) {
@@ -81,8 +80,6 @@ class CloudFile extends Controller {
           filePath: fsWriteFileName,
         });
       } finally {
-        // remove tmp files and don't block the request's response
-        // cleanupRequestFiles won't throw error even remove file io error happen
         this.ctx.cleanupRequestFiles();
       }
     }

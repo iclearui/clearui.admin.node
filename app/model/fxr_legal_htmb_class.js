@@ -5,23 +5,14 @@ const mongoose = require('mongoose');
 module.exports = app => {
   const model = require('path').basename(__filename, '.js');
   const attributes = {
-    idClass: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'fxr_legal_htmb_class',
-    },
-    contractCode: {
+    p_id: {
       type: String,
     },
-    contractName: {
+    classCode: {
       type: String,
     },
-    idFilePdf: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'sys_file',
-    },
-    idFileWord: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'sys_file',
+    className: {
+      type: String,
     },
     order: {
       type: Number,

@@ -8,7 +8,9 @@ class ModelCtrl extends Controller {
   }
 
   async get() {
+
     const { ctx, service } = this;
+
     const error = {
       code: '0',
     };
