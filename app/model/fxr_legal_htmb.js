@@ -15,6 +15,9 @@ module.exports = app => {
     contractName: {
       type: String,
     },
+    price:{
+      type: Number,
+    },
     idFilePdf: {
       type: mongoose.Schema.ObjectId,
       ref: 'sys_file',
@@ -22,6 +25,12 @@ module.exports = app => {
     idFileWord: {
       type: mongoose.Schema.ObjectId,
       ref: 'sys_file',
+    },
+    desc: {
+      type: String,
+    },
+    memo: {
+      type: String,
     },
     order: {
       type: Number,
