@@ -6,19 +6,15 @@ module.exports = app => {
   const model = require('path').basename(__filename, '.js');
   const attributes = {
     p_id: {
-      name: '分级',
       type: String,
     },
-    branchCode: {
-      name: '分支编码',
+    classCode: {
       type: String,
     },
-    branchName: {
-      name: '分支名称',
+    className: {
       type: String,
     },
     order: {
-      name: '排序号',
       type: Number,
       default: 999,
     },

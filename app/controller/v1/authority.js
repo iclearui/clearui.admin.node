@@ -327,7 +327,6 @@ class authority extends Controller {
         }
         console.log(e);
       });
-      console.log('rolesButton', rolesButton);
       const aggregate = await this.ctx.model.CdpMenuButton.aggregate([
         {
           $match: {

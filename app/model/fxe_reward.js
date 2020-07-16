@@ -5,22 +5,29 @@ const mongoose = require('mongoose');
 module.exports = app => {
   const model = require('path').basename(__filename, '.js');
   const attributes = {
-    p_id: {
-      name: '分级',
+    code: {
       type: String,
     },
-    branchCode: {
-      name: '分支编码',
+    name: {
       type: String,
     },
-    branchName: {
-      name: '分支名称',
+    title: {
       type: String,
     },
-    order: {
-      name: '排序号',
-      type: Number,
-      default: 999,
+    type: {
+      type: String,
+    },
+    reason: {
+      type: String,
+    },
+    money: {
+      type: String,
+    },
+    deadline: {
+      type: String,
+    },
+    completeStandard: {
+      type: String,
     },
   };
 
