@@ -5,16 +5,15 @@ const mongoose = require('mongoose');
 module.exports = app => {
   const model = require('path').basename(__filename, '.js');
   const attributes = {
-    branchCode: {
+    desc: {
       type: String,
     },
-    branchName: {
-      type: String,
-    },
-    order: {
-      type: Number,
-      default: 999,
-    },
+    idFiles: [ new mongoose.Schema({
+      idFile: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'sys_file',
+      },
+    }) ],
   };
 
   const schema = app.MongooseSchema(model, attributes);

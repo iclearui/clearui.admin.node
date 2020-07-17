@@ -11,6 +11,8 @@ class ModelCtrl extends Controller {
 
     const { ctx, service } = this;
 
+    console.log(ctx.query);
+
     const error = {
       code: '0',
     };

@@ -24,6 +24,9 @@ module.exports = app => {
     contract: {
       type: String, // 联系方式
     },
+    area: {
+      type: String, // 联系地区
+    },
     address: {
       type: String, // 联系地址
     },
@@ -54,7 +57,7 @@ module.exports = app => {
     // 目标对赌
     creditorType: {
       type: String, // 委托人属性
-      enum: [ '1', '2' ], // 1:债权人，2：债务人
+      enum: [ '0', '1' ], // 1:债权人，2：债务人
     },
     objectMoney: {
       type: String, // 目标金额
@@ -76,6 +79,16 @@ module.exports = app => {
   };
 
   const schema = app.MongooseSchema(model, attributes);
+
+  schema.post('validate', async (value, next) => {
+    const ctx = app.createAnonymousContext();
+    const date = new Date();
+    const Prefix = value.businessType + date.getFullYear() + '' + ctx.helper.appendOneZero(date.getMonth() + 1) + '' + ctx.helper.appendOneZero(date.getDate());
+    const record = await ctx.model.FxeDispute.findOne({ code: new RegExp(Prefix, 'i') }).sort('-code');
+    value.code = Prefix + ctx.helper.appendFourZero(record ? parseInt(record.code.slice(value.businessType.length + 8)) + 1 : 1);
+    value.name = value.code;
+    next();
+  });
 
   return app.mongooseDB.get('default').model(model, schema, model);
 };

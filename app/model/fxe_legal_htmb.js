@@ -7,7 +7,7 @@ module.exports = app => {
   const attributes = {
     idClass: {
       type: mongoose.Schema.ObjectId,
-      ref: 'fxr_legal_htmb_class',
+      ref: 'fxe_legal_htmb_class',
     },
     contractCode: {
       type: String,
