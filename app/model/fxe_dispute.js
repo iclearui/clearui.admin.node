@@ -42,6 +42,19 @@ module.exports = app => {
     caseStage: {
       type: Number, // 案情阶段
     },
+    rAdvise:{
+      type: String, // 案情简介
+    },
+    iAdvise:{
+      type: String, // 案情简介
+    },
+    oAdvise:{
+      type: String, // 案情简介
+    },
+    idLawyer:{
+      type: mongoose.Schema.ObjectId,
+      ref: 'sys_user',
+    },//制定律师
     desc: {
       type: String, // 案情简介
     },
@@ -52,6 +65,8 @@ module.exports = app => {
       },
     }) ],
     // 诉讼投资
+
+    //__s -1:已拒绝 0:资料待补偿 1：已提交 2、内部评审 3、专家评审 4、待签约（报价）  5 已签约（签约）
 
 
     // 目标对赌
