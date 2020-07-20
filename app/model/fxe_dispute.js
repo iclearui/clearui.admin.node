@@ -42,13 +42,13 @@ module.exports = app => {
     caseStage: {
       type: Number, // 案情阶段
     },
-    rAdvise:{
+    verifyOpinion:{
       type: String, // 案情简介
     },
-    iAdvise:{
+    reviewOpinion:{
       type: String, // 案情简介
     },
-    oAdvise:{
+    expertOpinion:{
       type: String, // 案情简介
     },
     idLawyer:{
@@ -59,6 +59,30 @@ module.exports = app => {
       type: String, // 案情简介
     },
     idFiles: [ new mongoose.Schema({
+      idFile: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'sys_file',
+      },
+    }) ],
+    idVerifyFiles: [ new mongoose.Schema({
+      idFile: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'sys_file',
+      },
+    }) ],
+    idReviewFiles: [ new mongoose.Schema({
+      idFile: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'sys_file',
+      },
+    }) ],
+    idSignUpFiles: [ new mongoose.Schema({
+      idFile: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'sys_file',
+      },
+    }) ],
+    idExpertFiles: [ new mongoose.Schema({
       idFile: {
         type: mongoose.Schema.ObjectId,
         ref: 'sys_file',
@@ -101,7 +125,6 @@ module.exports = app => {
     const Prefix = value.businessType + date.getFullYear() + '' + ctx.helper.appendOneZero(date.getMonth() + 1) + '' + ctx.helper.appendOneZero(date.getDate());
     const record = await ctx.model.FxeDispute.findOne({ code: new RegExp(Prefix, 'i') }).sort('-code');
     value.code = Prefix + ctx.helper.appendFourZero(record ? parseInt(record.code.slice(value.businessType.length + 8)) + 1 : 1);
-    value.name = value.code;
     next();
   });
 
