@@ -28,6 +28,9 @@ module.exports = app => {
       name: '宽度',
       type: Number,
     },
+    defaultValue:{
+      type: String,
+    },
     visible: {
       name: '是否显示',
       type: Boolean,
